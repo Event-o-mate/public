@@ -1,0 +1,140 @@
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+<title>Event-o-mate</title>
+
+<!-- Load Pacifico font -->
+<link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet'>
+
+<!-- Bootstrap -->
+<link href='css/bootstrap/bootstrap.min.css' rel='stylesheet'>
+<link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css' rel='stylesheet'>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src='js/bootstrap/bootstrap.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+<!-- Include main css file -->
+<link rel='stylesheet' href='css/main.css' />
+
+<body class="snt-body-bg" ng-app="EventoMate">
+	
+	<div class="snt-container container-fluid">
+		<!-- Menu -->
+		<!-- <ng-include src="'templates/menu.html'"></ng-include> -->
+		<nav class="snt-navbar navbar navbar-expand-lg navbar-dark fixed-top">
+			
+			<a class="snt-event-o-mate-logo navbar-brand" href="#/">Event-O-Mate</a>	
+			
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="nav navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="snt-create-event-menu-button nav-link" ng-href="#/create_event" href>Create event</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link register-button" ng-hide="menu.security.userValid" ng-click="menu.toggleRegister()" href> Register</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link dashboard-button d-none" ng-show="menu.security.userValid" ng-href="#/dashboard"> Dashboard</a>
+					</li>
+					
+					<li class="nav-item">
+						<a class="nav-link login-button" ng-hide="menu.security.userValid" ng-click="menu.toggleLogin()" href> Log In</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link logout-button d-none" ng-show="menu.security.userValid" ng-click="menu.logout()" href>Log Out </a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" ng-show="menu.security.userValid" ng-click="menu.openProfile()"><img class="snt-profile-icon" gravatar-src="menu.security.userEmail()" gravatar-size="100" src="img/user-placeholder.png"></a>
+					</li>
+				</ul>
+			</div>
+
+		</nav>
+
+		<div class="snt-content-container container" id="landing">
+			<div class="row">
+				<div class="col-12">
+
+					<div class="snt-headline-text">
+						<h1>Create your event in only one step!</h1>
+					</div>
+					
+					<div class="row">
+						<div class="snt-animation-container col-md-3 offset-md-4">
+								<object class="snt-planet" type="image/svg+xml" data="img/planet.svg" width="300" height="300" >
+									Your browser does not support SVG
+								</object>
+			
+								<object class="snt-robot-animation" type="image/svg+xml" data="img/robot.svg" width="300" height="300" >
+									Your browser does not support SVG
+								</object>
+			
+								<div class="snt-event-counter">
+									<!-- <span>{{landing.eventsCount}}</span> -->
+									<span>2094</span>
+								</div>
+						</div>
+					</div>
+
+					<div class="form-row text-center"> 
+						<a class="snt-create-event-btn btn" ng-href="#/create_event">Create Event</a>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+
+
+	
+		
+	<!-- text create your event-->
+	
+		<!-- <div  class="text-create-your-event">
+				<h1>Create your event in only one step!</h1>
+		</div> -->
+
+		<!--  PLANET -->
+
+		<!-- <div class="planet-robot col-md-3 offset-md-4">
+				<object type="image/svg+xml" data="img/planet.svg" width="300" height="300" >
+					Your browser does not support SVG
+				</object>
+
+				<object class="robot" type="image/svg+xml" data="img/robot.svg" width="300" height="300" >
+					Your browser does not support SVG
+				</object> -->
+
+			<!--  PLANET COUNT NUMBER -->
+				<!-- <div class="planet-counter"> -->
+					<!-- <span>{{landing.eventsCount}}</span> -->
+					<!-- <span>2094</span>
+				</div>
+
+				<a class="btn snt-home-create-btn" ng-href="#/create_event">Create Event</a>
+		</div>
+	</div>
+	
+	<ng-view></ng-view>
+
+	<div class="rotoBg-container">
+		<object class="rotoBg" type="image/svg+xml" data="img/rotoBg.svg">
+			Your browser does not support SVG
+		</object>	
+	</div> -->
+
+	<!-- Boostrap -->

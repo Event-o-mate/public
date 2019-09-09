@@ -1,0 +1,147 @@
+<div class="snt-content-container container" id="create-event">
+		<!-- CREATE EVENT FORM -->
+    <div class="row">
+      <div class="col-6 offset-3">
+        
+        <h1 class="text-center">Create new event</h1>
+        
+        <form role="form" class="snt-create-event-form text-left" name="createEventForm">
+					
+					<!-- Event Title -->
+					<div class="form-group">
+						
+						<label class="control-label" for="inputLabel1">Event name*</label>
+						
+						<span ng-messages="createEventForm.eventTitle.$error" ng-if="createEventForm.eventTitle.$touched">
+              <span ng-message="required" class="event-errors" role="alert">Please fill in required fields!</span>
+            </span>
+            
+						<input name="eventTitle" type="text" class="snt-event-input form-control" id="inputLabel1" data-com.agilebits.onepassword.user-edited="yes" ng-model="event.title" required>
+          </div>
+					
+					<!-- Event start / end  -->
+          <div class="row">
+            <div class="col-md-6 dropdown">
+
+              <a class="dropdown-toggle" id="dropdownStart" role="button" data-toggle="dropdown" data-target="#">
+                <div class="input-group">
+                  <label class="control-label" for="inputLabel1">Start time*</label>
+									
+									<span ng-messages="createEventForm.startTime.$error" ng-if="createEventForm.startTime.$touched">
+                    <span ng-message="required" class="event-errors" role="alert">Fill in required field!</span>
+                  </span>
+
+                  <input name="startTime" type="text" id="inputLabel1" class="snt-event-input form-control" data-ng-model="dateRangeStart" required>
+                </div>
+              </a>
+              <ul class="dropdown-menu datepicker-dropdown" role="menu" aria-labelledby="dLabel">
+                <datetimepicker 
+                  data-ng-model="dateRangeStart"
+                  data-datetimepicker-config="{ dropdownSelector: '#dropdownStart', renderOn: 'end-date-changed' }"
+                  data-on-set-time="startDateOnSetTime()"
+                  data-before-render="startDateBeforeRender($dates)"/></datetimepicker>
+              </ul>
+            </div>
+                  
+            <div class="col-md-6 dropdown">
+                    
+              <a class="dropdown-toggle" id="dropdownEnd" role="button" data-toggle="dropdown" data-target="#">
+                <div class="input-group">
+                  <label class="control-label" for="inputLabel1">End time*</label>
+									
+									<span ng-messages="createEventForm.endTime.$error" ng-if="createEventForm.endTime.$touched">
+                    <span ng-message="required" class="event-errors" role="alert">Fill in required field!</span>
+                  </span>
+
+                  <input name="endTime" type="text" id="inputLabel1" class="snt-event-input form-control" datetime="dd MMM" data-ng-model="dateRangeEnd" required>
+                </div>
+							</a>
+							
+              <ul class="dropdown-menu datepicker-dropdown" role="menu" aria-labelledby="dLabel">
+                <datetimepicker data-ng-model="dateRangeEnd"
+                  data-datetimepicker-config="{ dropdownSelector: '#dropdownEnd', renderOn: 'start-date-changed' }"
+                  data-on-set-time="endDateOnSetTime()"
+                  data-before-render="endDateBeforeRender($view, $dates, $leftDate, $upDate, $rightDate)">
+                </datetimepicker>
+              </ul>
+						</div>
+						
+          </div>
+							
+					<!-- Event Location -->
+          <div class="form-group">
+						<label class="control-label" for="inputLabel1">Location*</label>
+
+						<span ng-messages="createEventForm.location.$error" ng-if="createEventForm.location.$touched">
+							<span ng-message="required" class="event-errors" role="alert">
+								Please fill in required fields!
+							</span>
+						</span>
+
+            <input name="location" type="text" class="snt-event-input form-control" id="inputLabel1" data-com.agilebits.onepassword.user-edited="yes" g-places-autocomplete ng-model="event.location" required>
+          </div>
+					
+					<!-- Event Description -->
+					<div class="form-group">
+						<label class="control-label" for="textareaLabel1">Description</label>
+						<!-- <textarea class="snt-event-input form-control" id="textareaLabel1" ng-model="event.description">{{ event.description }}</textarea> -->
+						<textarea class="snt-event-input form-control" id="textareaLabel1" ng-model="event.description"></textarea>
+					</div>
+
+					<!-- Event widgets -->
+          <div class="details-wrapper event-section" ng-repeat="section in event.sections">
+						<button type="button" class="remove-section-btn close" aria-label="Close">
+              <span aria-hidden="true" ng-click="event.removeSection(section.type)">&times;</span>
+            </button>
+						
+						<!-- Comments widget -->
+						<div class="container" ng-show="section.type == 'comments'">
+							<div class="row">
+								<div class="col-md-2"><img src="img/user-placeholder.png" class="snt-comment-profile-img"></div>
+								<div class="snt-comment-content col-md-10">
+									<textarea placeholder="Write a comment ..."></textarea>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12">
+									<a class="snt-submit-comment btn btn-xs btn-primary disabled">Submit</a>
+								</div>
+							</div>  
+						</div>
+
+						<!-- Img Gallery widget -->
+						<div class="container" ng-show="section.type == 'img-gallery'">
+							<div class="row">
+								<div class="col-md-12">
+									<p>Image Gallery section will be added soon!</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Invitations widget -->
+						<div class="container" ng-show="section.type == 'fb-invitations'">
+							<div class="row">
+								<div class="col-md-12">
+									<p>Facebook Invitations section will be added soon!</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- Widget menu -->
+						<ul class="widgets-list" ng-show="section.type == 'widget-menu'">
+							<li class="comment-widget-icon" ng-click="event.selectWidget('comments')"></li>
+							<li class="photos-widget-icon" ng-click="event.selectWidget('img-gallery')" ></li>
+							<li class="fb-invitations-widget-icon" ng-click="event.selectWidget('fb-invitations')"><div class="fb-icon-bg"></div></li>
+						</ul>
+
+          </div> <!-- END Event widgets -->
+              
+					<button type="button" class="snt-add-section-btn 
+					btn" ng-click="event.addSection('widget-menu')">+ Add new Section</button>
+					<button type="button" class="snt-publish-btn btn" ng-click="event.createEvent()"> Publish event </button>
+				
+				</form>
+				
+    </div><!-- END COL -->
+  </div><!-- END ROW -->
+</div>
